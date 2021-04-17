@@ -22,16 +22,18 @@
  *
  */
 
-#ifndef _FSM_HPP
-#define _FSM_HPP
-
-#include <iostream>
+#ifndef _FSM_STATEMACHINE_HPP
+#define _FSM_STATEMACHINE_HPP
 
 #include <string>
 #include <tuple>
 #include <utility>
 #include <variant>
 #include <type_traits>
+
+#ifdef LIBFSM_DEBUG
+#include <iostream>
+#endif
 
 #define FSM_EVENT(EventName)              \
     class EventName : public ::fsm::Event \
@@ -72,7 +74,9 @@ namespace fsm
         template <typename Machine>
         void Execute(Machine *)
         {
+#ifdef LIBFSM_DEBUG
             std::cout << "Called Null Transition" << std::endl;
+#endif
         }
     };
 
